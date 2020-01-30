@@ -1,13 +1,14 @@
 // D para delante y A para atras
 
 void mover_tiempo (int tiempo, int velocidad, char sentido);
-
+void dar_voltios(int tiempo, int velocidad, char sentido);
 
 
 task main(){
 
-     mover_tiempo(1000,75,'D');
-     mover_tiempo(1000,75,'A');
+     //mover_tiempo(1000,75,'D');
+     //mover_tiempo(1000,75,'A');
+     dar_voltios(2000,75,'H');
 }
 
 
@@ -20,4 +21,13 @@ void mover_tiempo (int tiempo, int velocidad, char sentido){
      OnRev(OUT_BC,velocidad);
     }
     Wait(tiempo);
+}
+
+
+void dar_voltios(int tiempo, int velocidad, char sentido){
+
+     OnFwd(OUT_C,velocidad);
+     OnRev(OUT_B,velocidad);
+     Wait(tiempo);
+
 }
