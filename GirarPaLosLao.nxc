@@ -1,33 +1,58 @@
-// D para delante y A para atras
+//D para delante y A para atras
 
 void mover_tiempo (int tiempo, int velocidad, char sentido);
 void dar_voltios(int tiempo, int velocidad, char sentido);
+
+//salida C rueda izquierda
+//salida B rueda derecha
+
 
 
 task main(){
 
      //mover_tiempo(1000,75,'D');
      //mover_tiempo(1000,75,'A');
-     dar_voltios(2000,75,'H');
-}
+     //dar_voltios(2000,75,'H');
+     //dar_voltios(2000,75,'A');
 
+   int i =0;
+   int velocidad =60;
+   do{
+     dar_voltios(1000,velocidad,'H');
+     dar_voltios(1000,velocidad,'A');
+     i = i+1;
+     velocidad = velocidad+5;
+   } while (i < 10)
 
+ }
+ 
+ 
 void mover_tiempo (int tiempo, int velocidad, char sentido){
     if(sentido == 'D'){
      OnFwd(OUT_BC,velocidad);
+     Wait(tiempo);
     }
 
     else {
      OnRev(OUT_BC,velocidad);
+     Wait(tiempo);
     }
-    Wait(tiempo);
+
 }
 
 
 void dar_voltios(int tiempo, int velocidad, char sentido){
 
+    if(sentido == 'H'){
+//sentido horario (H)
      OnFwd(OUT_C,velocidad);
      OnRev(OUT_B,velocidad);
      Wait(tiempo);
-
+    }
+    else{
+//sentido antihorario (A)
+     OnFwd(OUT_B,velocidad);
+     OnRev(OUT_C,velocidad);
+     Wait(tiempo);
+    }
 }
