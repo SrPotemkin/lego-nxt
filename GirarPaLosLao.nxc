@@ -2,30 +2,60 @@
 
 void mover_tiempo (int tiempo, int velocidad, char sentido);
 void dar_voltios(int tiempo, int velocidad, char sentido);
-
+void gira_pal_lao (int tiempo, int velocidad, string sentido);
 //salida C rueda izquierda
 //salida B rueda derecha
 
 
 
 task main(){
-
+       gira_pal_lao(10000, 75, "DD");
+       gira_pal_lao(10000, 75, "DI");
+       gira_pal_lao(10000, 75, "AD");
+       gira_pal_lao(10000, 75, "AI");
      //mover_tiempo(1000,75,'D');
      //mover_tiempo(1000,75,'A');
      //dar_voltios(2000,75,'H');
      //dar_voltios(2000,75,'A');
 
-   int i =0;
-   int velocidad =60;
-   do{
-     dar_voltios(1000,velocidad,'H');
-     dar_voltios(1000,velocidad,'A');
-     i = i+1;
-     velocidad = velocidad+5;
-   } while (i < 10)
+   //int i =0;
+   //int velocidad =60;
+   //do{
+     //dar_voltios(1000,velocidad,'H');
+     //dar_voltios(1000,velocidad,'A');
+     //i = i+1;
+     //velocidad = velocidad+5;
+   //} while (i < 10)
 
  }
- 
+
+//DI alante izquierda, DD alante derecha, AI atras izquierda y AD atras derecha.
+void gira_pal_lao(int tiempo, int velocidad, string sentido){
+
+     if(sentido == "DI"){
+     OnFwd(OUT_C,velocidad);
+     OnFwd(OUT_B,velocidad/2);
+     Wait(tiempo);
+     }
+     
+     if(sentido == "DD"){
+     OnFwd(OUT_B,velocidad);
+     OnFwd(OUT_C,velocidad/2);
+     Wait(tiempo);
+     }
+     
+     if(sentido == "AI"){
+     OnRev(OUT_C,velocidad);
+     OnRev(OUT_B,velocidad/2);
+     Wait(tiempo);
+     }
+     
+     if(sentido == "AD"){
+     OnRev(OUT_B,velocidad);
+     OnRev(OUT_C,velocidad/2);
+     Wait(tiempo);
+     }
+ }
  
 void mover_tiempo (int tiempo, int velocidad, char sentido){
     if(sentido == 'D'){
